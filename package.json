@@ -1,0 +1,30 @@
+{
+  "name": "focusboard-be-svc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "knexfile.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.1.0",
+    "knex": "^3.1.0",
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.31.0",
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.0.13",
+    "eslint": "^9.31.0",
+    "eslint-plugin-import": "^2.32.0",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "scripts": {
+    "dev": "node src/server.js",
+    "migrate:latest": "knex migrate:latest --knexfile knexfile.ts"
+
+  }
+}
