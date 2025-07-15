@@ -1,0 +1,12 @@
+import express from 'express';
+import { AccomplishmentController } from '../controllers/accomplishments';
+
+const router = express.Router();
+
+router.post('/', AccomplishmentController.create);
+router.get('/:id', AccomplishmentController.getOne);
+router.delete('/:id', AccomplishmentController.delete);
+router.put('/:id', AccomplishmentController.update);
+router.get('/task/:taskId', AccomplishmentController.listByTask);
+
+export default router;
