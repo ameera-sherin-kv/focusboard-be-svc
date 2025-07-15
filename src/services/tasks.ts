@@ -10,6 +10,10 @@ export const TaskService = {
     return TaskRepo.getById(id);
   },
 
+  getTasksByDate(date: string): Promise<Task[]> {
+    return TaskRepo.getTasksByDate(date);
+  },
+
   create(data: Partial<Task>): Promise<Task> {
     return TaskRepo.create(data);
   },

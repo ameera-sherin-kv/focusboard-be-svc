@@ -14,7 +14,7 @@ export async function up(knex: Knex): Promise<void> {
       .defaultTo('medium');
 
     table
-      .enu('status', ['planned', 'in_progress', 'completed'], {
+      .enu('status', ['planned', 'in_progress', 'completed', 'discarded'], {
         useNative: true,
         enumName: 'task_status',
       })

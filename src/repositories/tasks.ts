@@ -5,7 +5,11 @@ const TABLE_NAME = 'tasks';
 
 export const TaskRepo = {
   async getAll(): Promise<Task[]> {
-    return db(TABLE_NAME).select();
+    return db(TABLE_NAME).select().orderBy('created_at', 'desc');
+  },
+
+  async getTasksByDate(date: string): Promise<Task[]> {
+    return db(TABLE_NAME).where('date', date).orderBy('created_at', 'desc');
   },
 
   async getById(id: string): Promise<Task | undefined> {

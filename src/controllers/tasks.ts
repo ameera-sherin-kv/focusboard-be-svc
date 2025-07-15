@@ -13,6 +13,11 @@ export const TaskController = {
     res.json(task);
   },
 
+  async getTasksByDate(req: Request, res: Response) {
+    const tasks = await TaskService.getTasksByDate(req.params.date);
+    res.json(tasks);
+  },
+
   async create(req: Request, res: Response) {
     const task = await TaskService.create(req.body);
     res.status(201).json(task);

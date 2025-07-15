@@ -5,6 +5,7 @@ const router = Router();
 
 router.get('/', TaskController.getAll);
 router.get('/:id', TaskController.getById);
+router.get('/date/:date', TaskController.getTasksByDate);
 router.post('/', TaskController.create);
 router.put('/:id', TaskController.update);
 router.delete('/:id', TaskController.delete);
