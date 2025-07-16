@@ -5,6 +5,7 @@ import tasksRoutes from './routes/tasks';
 import accomplishmentsRoutes from './routes/accomplishments';
 import dashboardRoutes from './routes/dashboard';
 import statsRoutes from './routes/weeklyStats';
+import summaryAIRoutes from './routes/summaryAI';
 
 const app = express();
 
@@ -15,5 +16,6 @@ app.use('/tasks', tasksRoutes);
 app.use('/accomplishments', accomplishmentsRoutes);
 app.use('/dashboard', dashboardRoutes);
 app.use('/stats', statsRoutes);
+app.use('/highlights', summaryAIRoutes);
 
 export default app;
