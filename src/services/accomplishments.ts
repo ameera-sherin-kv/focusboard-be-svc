@@ -28,11 +28,15 @@ export const AccomplishmentService = {
     });
   },
 
-  updateAccomplishment(id: string, updates: Partial<Accomplishment>): Promise<Accomplishment | undefined> {
+  async updateAccomplishment(id: string, updates: Partial<Accomplishment>): Promise<Accomplishment | undefined> {
     return AccomplishmentRepo.update(id, updates);
   },
 
-  deleteAccomplishment(id: string): Promise<number> {
+  async deleteAccomplishment(id: string): Promise<number> {
     return AccomplishmentRepo.deleteAccomplishment(id);
-  }
+  },
+
+  async getAccomplishmentsByDateRange(startDate: string, endDate: string): Promise<Accomplishment[]> {
+    return AccomplishmentRepo.getAccomplishmentsByDateRange(startDate, endDate);
+  },
 };

@@ -18,6 +18,14 @@ export const AccomplishmentRepo = {
     return { accomplishment, proofs };
   },
 
+  async getAccomplishmentsByDateRange(startDate: string, endDate: string): Promise<Accomplishment[]> {
+    return db<Accomplishment>('accomplishments as a')
+        .join('tasks as t', 'a.task_id', 't.id')
+        .whereBetween('t.date', [startDate, endDate])
+        .orderBy('t.date', 'asc')
+        .select('a.*');
+  },
+
   async listByTaskId(taskId: string): Promise<Accomplishment[]> {
     return db<Accomplishment>(ACCOMPLISHMENT_TABLE).where({ task_id: taskId });
   },
