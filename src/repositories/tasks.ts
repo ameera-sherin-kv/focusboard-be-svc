@@ -1,5 +1,5 @@
 import db from '../config/db';
-import { Task } from '../models/tasks';
+import { Task, TaskStatus } from '../models/tasks';
 
 const TABLE_NAME = 'tasks';
 
@@ -28,5 +28,22 @@ export const TaskRepo = {
 
   async delete(id: string): Promise<number> {
     return db(TABLE_NAME).where({ id }).del();
-  }
+  },
+
+  async countPlannedTasksByDate(date: string): Promise<number> {
+    return db(TABLE_NAME)
+      .where('date', date)
+      .count('id as count')
+      .first()
+      .then(res => Number(res?.count ?? 0));
+  },
+
+  async countCompletedByDate(date: string): Promise<number> {
+    return db(TABLE_NAME)
+      .where('date', date)
+      .where('status', TaskStatus.COMPLETED)
+      .count('id as count')
+      .first()
+      .then(res => Number(res?.count ?? 0));
+  },
 };
