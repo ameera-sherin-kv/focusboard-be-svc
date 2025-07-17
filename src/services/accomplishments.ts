@@ -39,4 +39,8 @@ export const AccomplishmentService = {
   async getAccomplishmentsByDateRange(startDate: string, endDate: string): Promise<AccomplishmentWithProject[]> {
     return AccomplishmentRepo.getAccomplishmentsByDateRange(startDate, endDate);
   },
+
+  async deleteAccomplishmentsByTaskId(taskId: string): Promise<number> {
+    return AccomplishmentRepo.deleteAccomplishmentsByTaskId(taskId);
+  }
 };

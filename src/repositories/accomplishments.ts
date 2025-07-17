@@ -55,5 +55,15 @@ export const AccomplishmentRepo = {
       await trx(PROOF_TABLE).where({ accomplishment_id: id }).del();
       return trx(ACCOMPLISHMENT_TABLE).where({ id }).del();
     });
+  },
+
+  async deleteAccomplishmentsByTaskId(taskId: string): Promise<number> {
+    const accomplishments = await db<Accomplishment>(ACCOMPLISHMENT_TABLE).where({ task_id: taskId }).first();
+    if (!accomplishments) return 0;
+
+    return db.transaction(async (trx: Knex.Transaction) => {
+      await trx(PROOF_TABLE).where({ accomplishment_id: accomplishments.id }).del();
+      return trx(ACCOMPLISHMENT_TABLE).where({ id: accomplishments.id }).del();
+    });
   }
 };

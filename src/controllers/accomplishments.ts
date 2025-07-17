@@ -51,4 +51,10 @@ export const AccomplishmentController = {
       return res.status(500).json({ message: 'Internal server error' });
     }
   },
+
+  async deleteAccomplishmentsByTaskId(req: Request, res: Response) {
+    const taskId = req.params.taskId;
+    await AccomplishmentService.deleteAccomplishmentsByTaskId(taskId);
+    res.status(204).send();
+  }
 };
