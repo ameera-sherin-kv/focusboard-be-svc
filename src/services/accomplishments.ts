@@ -1,7 +1,7 @@
 import db from '../config/db';
 import { Knex } from 'knex';
 import { AccomplishmentRepo } from '../repositories/accomplishments';
-import { Accomplishment, AccomplishmentsWithProofs, ProofInput } from '../models/accomplishments';
+import { Accomplishment, AccomplishmentWithProject, AccomplishmentsWithProofs, ProofInput } from '../models/accomplishments';
 
 export const AccomplishmentService = {
   async getAccomplishmentById(id: string): Promise<AccomplishmentsWithProofs | undefined> {
@@ -36,7 +36,7 @@ export const AccomplishmentService = {
     return AccomplishmentRepo.deleteAccomplishment(id);
   },
 
-  async getAccomplishmentsByDateRange(startDate: string, endDate: string): Promise<Accomplishment[]> {
+  async getAccomplishmentsByDateRange(startDate: string, endDate: string): Promise<AccomplishmentWithProject[]> {
     return AccomplishmentRepo.getAccomplishmentsByDateRange(startDate, endDate);
   },
 };

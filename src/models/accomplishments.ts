@@ -9,6 +9,12 @@ export interface Accomplishment {
     updated_at: string;
   }
 
+export interface AccomplishmentWithProject extends Accomplishment {
+  project_id?: string;
+  project_name?: string;
+  project_description?: string;
+}
+
 export enum ProofType {
     PULL_REQUEST = 'pull_request',
     SCREENSHOT = 'screenshot',

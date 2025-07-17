@@ -1,6 +1,6 @@
 import db from '../config/db';
 import { Knex } from 'knex';
-import { Accomplishment, ProofInput } from '../models/accomplishments';
+import { Accomplishment, AccomplishmentWithProject, ProofInput } from '../models/accomplishments';
 
 const ACCOMPLISHMENT_TABLE = 'accomplishments';
 const PROOF_TABLE = 'accomplishment_proofs';
@@ -18,12 +18,14 @@ export const AccomplishmentRepo = {
     return { accomplishment, proofs };
   },
 
-  async getAccomplishmentsByDateRange(startDate: string, endDate: string): Promise<Accomplishment[]> {
+  async getAccomplishmentsByDateRange(startDate: string, endDate: string): Promise<AccomplishmentWithProject[]> {
     return db<Accomplishment>('accomplishments as a')
         .join('tasks as t', 'a.task_id', 't.id')
+        .join('projects as p', 't.project_id', 'p.id')
         .whereBetween('t.date', [startDate, endDate])
         .orderBy('t.date', 'asc')
-        .select('a.*');
+        .select('a.*','p.id as project_id', 'p.name as project_name', 'p.description as project_description');
+
   },
 
   async listByTaskId(taskId: string): Promise<Accomplishment[]> {
